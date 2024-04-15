@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 const mongoose = require('mongoose');
-
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -10,8 +9,10 @@ mongoose.connect(process.env.MONGO_URI, {
 () => {
     console.log("Mongo connection Established")
 });
-
 const PORT = process.env.PORT
+const cors = require('cors')
+app.use(cors())
+
 
 app.get('/', (req,res) => {
     res.send('Hello world');
